@@ -3,9 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const TaskModel = require("./Models/task")
 
-const uri ="mongodb+srv://akuk:halamathihabibo@merncluster.0firaqp.mongodb.net/merndb";
-// mongodb+srv://${username}:${password}@cluster0.mongodb.net/${dbname}?retryWrites=true&w=majority
-
+const uri = process.env.MONGODB_URI;
 const app =express()
 app.use(cors())
 app.use(express.json())
@@ -44,4 +42,7 @@ app.put('/edit/:id', (req, res) => {
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
-app.listen(8000,()=>{console.log("server is running")})
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
