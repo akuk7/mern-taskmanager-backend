@@ -11,6 +11,10 @@ app.use(cors())
 app.use(express.json())
 mongoose.connect(uri)
 
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+
 app.post('/add',(req,res)=>{
      const { title, description } = req.body;
     TaskModel.create({
